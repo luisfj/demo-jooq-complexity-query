@@ -4,6 +4,8 @@ import java.util.function.Consumer;
 
 import org.jooq.Record;
 import org.jooq.SelectQuery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.function.ThrowingConsumer;
 
@@ -12,7 +14,7 @@ import dev.luisjohann.vo.context.EstoqueContextVO;
 
 @Service
 public class EstoqueDAO {
-
+    private static final Logger logger = LoggerFactory.getLogger(EstoqueDAO.class);
     protected JooqContext jooq;
 
     public EstoqueDAO(JooqContext jooq) {
@@ -86,6 +88,7 @@ public class EstoqueDAO {
 
     protected void printQuery(SelectQuery<? extends Record> query, String name) {
         // NOOP: Serve para fins de depuracao
-
+        logger.info(name);
+        logger.info(query.getSQL());
     }
 }
